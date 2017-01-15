@@ -1,7 +1,7 @@
 import React from 'react';
 import Article from './article.jsx'
 import store from '../store';
-import { GET_ARTICLES, GET_ARTICLE, getArticles } from '../actions/articles';
+import { getArticles } from '../actions/articles';
 
 class Articles extends React.Component {
     constructor() {
@@ -24,7 +24,7 @@ class Articles extends React.Component {
           <section className="articles">
             {
               this.state.articles.map((article,ind) => {
-                return <Article title={article.title} body={article.body} key={ind} />
+                  return <Article title={article.title} body={article.body} id={article._id} key={article._id} />
               })
             }
           </section>
