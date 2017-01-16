@@ -3,6 +3,10 @@ var Schema = mongoose.Schema;
 
 var user = new Schema({
     _id: {type: String, default: Date.now},
+    isAdmin: {
+      type: Boolean,
+      required: false
+    },
     login: {
         type: String,
         required: true

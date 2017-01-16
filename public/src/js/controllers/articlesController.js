@@ -1,14 +1,17 @@
 import requestProviderController from './requestProviderController'
 import config from '../config';
 
-class loadArticlesController {
 
+class articlesController {
   static loadArticles() {
     return requestProviderController.get(config.url.api + config.url.laodArticles);
   }
-  static loadArticleById(id) {
+  static loadArticle(id) {
     return requestProviderController.get(config.url.api + config.url.loadArticleById + id);
+  }
+  static deleteArticle(id) {
+    return requestProviderController.get(config.url.api + config.url.deleteArticleById + id);
   }
 }
 
-export default loadArticlesController;
+export default articlesController;

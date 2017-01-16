@@ -9,8 +9,7 @@ class requestProviderController {
     return fetch(url, {
         method: 'get',
         mode: 'cors'
-      }).then(res => res.json())
-      .then(json => json);
+      }).then(res => res.json());
   }
 
   static post(url, data, headers = defaultHeaders) {
@@ -20,7 +19,6 @@ class requestProviderController {
         body: data
       })
       .then(res => res.json())
-      .then(json => json)
       .catch(error => console.log(error));
   }
 };

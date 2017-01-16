@@ -1,11 +1,12 @@
 import React from 'react';
-import Articles from './articles.jsx';
+import Header from './header.jsx';
 
 class App extends React.Component {
     render() {
         return (
             <section id="main">
-                <Articles/>
+                <Header/>
+                {this.props.children}
             </section>
         )
     }

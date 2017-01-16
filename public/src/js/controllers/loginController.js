@@ -1,19 +1,19 @@
 import requestProviderController from './requestProviderController'
 import config from '../config';
 
-
 class loginController {
-  static getFormData() {
-    let login = document.querySelector('.login input[name=login]').value;
-    let password = document.querySelector('.login input[name=password]').value;
-
-    requestProviderController.post(config.url.api + config.url.login, {
-      login: login,
-      password: password
-    }).then(function(json) {
-      console.log(json);
-    });
-  }
+    static login(login, password) {
+        return requestProviderController.post(
+          config.url.api + config.url.login,
+          JSON.stringify({login: login, password: password})
+        ).then(json => {
+            if(json.success) {
+              sessionStorage.setItem('user', json.user);
+              sessionStorage.setItem('userIsAdmin', json.isAdmin);
+            }
+            return json;
+        });
+    }
 }
 
 export default loginController;

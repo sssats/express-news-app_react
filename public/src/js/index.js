@@ -8,6 +8,8 @@ import Provider from 'react-redux';
 import AppRouter from './components/router.jsx'
 
 ReactDOM.render(
-  <AppRouter/>,
+  <main>
+    <AppRouter/>
+  </main>,
   document.getElementById('root')
 );

@@ -2,7 +2,7 @@ export const GET_ARTICLES = 'GET_ARTICLES';
 export const GET_ARTICLE = 'GET_ARTICLE';
 export const LOADED_ARTICLES = 'LOADED_ARTICLES';
 export const LOADED_ARTICLE = 'LOADED_ARTICLE';
-import loadArticlesController from '../controllers/loadArticlesController.js'
+import loadArticlesController from '../controllers/articlesController.js'
 
 export function getArticles() {
   return dispatch => {
@@ -14,7 +14,7 @@ export function getArticles() {
 
 export function getArticle(id) {
   return dispatch => {
-    loadArticlesController.loadArticleById(id).then(json => {
+    loadArticlesController.loadArticle(id).then(json => {
       dispatch(loadedArticle(json));
     })
   }

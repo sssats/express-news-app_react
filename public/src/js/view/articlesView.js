@@ -1,4 +1,4 @@
-import loadArticlesController from '../controllers/loadArticlesController.js'
+import loadArticlesController from '../controllers/articlesController.js'
 import createArticleController from '../controllers/createArticleController.js'
 
 class articlesView {
@@ -44,5 +44,4 @@ if (createArticleBtn) {
 
 if (document.querySelector('.articles')) {
   articlesView.render();
-
 }

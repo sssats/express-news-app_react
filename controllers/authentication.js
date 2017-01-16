@@ -25,26 +25,21 @@ router.post('/login', function(req, res, next) {
     'login': data.login
   }, function(err, user) {
     if (err) {
-      res.json({
-        error: err
-      });
+      res.json({error: err});
     }
     if (user) {
       isRightPassword = passwordHash.verify(data.password, user.password);
       if (isRightPassword) {
         res.json({
           success: true,
-          user: user.login
+          user: user.login,
+          isAdmin: user.isAdmin ? user.isAdmin : false
         });
       } else {
-        res.json({
-          error: 'Incorrect password'
-        });
+        res.json({error: 'Incorrect password'});
       }
     } else if (!user) {
-      res.json({
-        error: 'No user found'
-      });
+      res.json({error: 'No user found'});
     }
   });
 });
@@ -52,44 +47,33 @@ router.post('/login', function(req, res, next) {
 router.post('/register', function(req, res, next) {
   var data = req.body,
     password;
-    console.log(data);
+  console.log(data);
 
   User.findOne({
     'login': data.login
   }, function(err, user) {
     if (user) {
-      res.json({
-        error: 'This login is already in use'
-      })
+      res.json({error: 'This login is already in use'})
     } else {
       if (data.password1 === data.password2) {
         password = encryptPassword(data.password1);
 
-        var user = new User({
-          login: data.login,
-          password: password
-        });
+        var user = new User({login: data.login, password: password});
 
         user.save(function(err, user, success) {
           if (err) {
-            res.json({
-              error: err
-            });
+            res.json({error: err});
           } else if (success === 1) {
-            res.json({
-              success: true,
-              user: user
-            });
+            res.json({success: true, user: user});
           }
         });
 
       } else {
-        res.json({
-          error: 'Repeated password is not equal to password'
-        })
+        res.json({error: 'Repeated password is not equal to password'})
       }
     }
   });
 });
 
 module.exports = router;
+``
