@@ -1,8 +1,9 @@
 import React from 'react';
 import store from '../store';
-import {Router, Link} from 'react-router'
+import {Router, Link, browserHistory} from 'react-router'
 import {getArticle} from '../actions/articles';
-import articlesController from '../controllers/articlesController'
+import articlesController from '../controllers/articlesController';
+import loginController from '../controllers/loginController';
 
 class ArticlePage extends React.Component {
   constructor() {
@@ -20,14 +21,16 @@ class ArticlePage extends React.Component {
     store.dispatch(getArticle(this.props.routeParams.articleId));
   }
   deleteArticle() {
-    /*articlesController.deleteArticle(this.state.article._id)
-    .then();
-    */
-    Router.transitionTo('/');
+    articlesController.deleteArticle(this.state.article._id).then(json => {
+      if (json.success) {
+        browserHistory.push('/');
+      }
+    });
+
   }
   render() {
     let button = null;
-    if (JSON.parse(sessionStorage.userIsAdmin)) {
+    if (loginController.getUserRole()) {
       button = <button type="button" onClick={this.deleteArticle}>delete article</button>;
     }
     return (

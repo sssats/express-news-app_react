@@ -1,4 +1,5 @@
 import React from 'react';
+import {browserHistory} from 'react-router'
 import loginController from '../controllers/loginController';
 
 class Login extends React.Component {
@@ -8,7 +9,11 @@ class Login extends React.Component {
     this.login = this.login.bind(this);
   }
   login() {
-    loginController.login(this.state.login, this.state.password);
+    loginController.login(this.state.login, this.state.password).then(json => {
+      if (json.success) {
+        browserHistory.push('/');
+      }
+    });
   }
   handleChange(e) {
     this.setState({
