@@ -22,7 +22,7 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <section id="Login">
+      <section id="login">
         <form name="loginForm">
           <div>
             <label>

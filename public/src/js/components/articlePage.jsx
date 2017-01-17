@@ -5,29 +5,36 @@ import {getArticle} from '../actions/articles';
 import articlesController from '../controllers/articlesController';
 import loginController from '../controllers/loginController';
 
-class ArticlePage extends React.Component {
+export default class ArticlePage extends React.Component {
   constructor() {
     super();
+    this.subscriber;
     this.deleteArticle = this.deleteArticle.bind(this);
     this.state = {
       article: {}
     };
   }
-  componentDidMount() {
-    store.subscribe(() => {
+
+  componentWillMount() {
+    this.subscriber = store.subscribe(() => {
       let article = store.getState().articles;
       this.setState({article: article})
     });
     store.dispatch(getArticle(this.props.routeParams.articleId));
   }
+
+  componentWillUnmount() {
+    this.subscriber();
+  }
+
   deleteArticle() {
     articlesController.deleteArticle(this.state.article._id).then(json => {
       if (json.success) {
         browserHistory.push('/');
       }
     });
-
   }
+
   render() {
     let button = null;
     if (loginController.getUserRole()) {
@@ -42,5 +49,3 @@ class ArticlePage extends React.Component {
     )
   }
 }
-
-export default ArticlePage;

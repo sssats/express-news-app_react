@@ -23,7 +23,9 @@ class Header extends React.Component {
       <header>
         <nav>
           <Link to={`/`}>Home</Link>
-          {login}
+          <nav className="login">
+            {login}
+          </nav>
         </nav>
       </header>
     )

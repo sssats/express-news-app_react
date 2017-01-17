@@ -4,10 +4,10 @@ import Header from './header.jsx';
 class App extends React.Component {
     render() {
         return (
-            <section id="main">
+            <div>
                 <Header/>
                 {this.props.children}
-            </section>
+            </div>
         )
     }
 }

@@ -3,20 +3,25 @@ import Article from './article.jsx'
 import store from '../store';
 import { getArticles } from '../actions/articles';
 
-class Articles extends React.Component {
+export default class Articles extends React.Component {
     constructor() {
       super();
+      this.subscriber;
       this.state = {
         articles: []
       };
     }
 
     componentWillMount() {
-      store.subscribe(() => {
+      this.subscriber = store.subscribe(() => {
         let articles = store.getState().articles;
         this.setState({articles: articles})
       });
       store.dispatch(getArticles());
+    }
+
+    componentWillUnmount() {
+      this.subscriber();
     }
 
     render() {
@@ -31,4 +36,3 @@ class Articles extends React.Component {
         )
     }
 }
-export default Articles;
