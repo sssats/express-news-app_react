@@ -1,0 +1,7 @@
+<div>
+  <hr/>
+  {{ $ctrl | json}}
+  <ul>
+    <li ng-repeat="article in $ctrl.articles">{{article.title}}</li>
+  </ul>
+</div>
