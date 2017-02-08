@@ -1,6 +1,5 @@
 <div>
-  <hr/>
-  {{ $ctrl | json}}
+  <h3>You have {{$ctrl.articles.length}} articles</h3>
   <ul>
     <li ng-repeat="article in $ctrl.articles">{{article.title}}</li>
   </ul>

@@ -1,0 +1,19 @@
+<form name="article" novalidate>
+  <label>
+      Title
+      <input ng-model="$ctrl.title" name="title" type="text" required/>
+      {{$ctrl.title}}
+  </label>
+  <div ng-show="article.title.$error.required && article.title.$touched">Title is required.</div>
+  <br/>
+  <br/>
+  <label>
+    Body
+    <textarea ng-model="$ctrl.body" name="body" required long></textarea>
+    {{$ctrl.body}}
+  </label>
+  <div ng-show="article.body.$error.long && article.body.$touched">Body must be > 20 symbols</div>
+  <div ng-show="article.body.$error.required && article.body.$touched">Body is required</div>
+  <br/>
+  <button type="button" ng-click="$ctrl.create(article)">Create article</button>
+</form>

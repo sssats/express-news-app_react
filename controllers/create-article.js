@@ -10,28 +10,33 @@ router.get('/list', function(req, res, next) {
   res.render('articles')
 });
 
+function savePost(data, picture, res) {
+  var article = new Article({title: data.title, body: data.body, picture: picture});
+  article.save(function(err, article, success) {
+    if (err) {
+      res.json({error: err});
+    } else if (success === 1) {
+      res.json({success: true, article: article});
+    }
+  });
+}
+
 router.post('/create', function(req, res, next) {
   var data = req.body;
   var dateHash = Date.now();
-
-  if (req.files.image.name.length > 0) {
+  console.log(data);
+  if (req.files) {
     req.files.image.mv('./public/images/' + dateHash + '_' + req.files.image.name, function(err) {
       if (err) {
         res.status(500).send(err);
       } else {
-        var article = new Article({
-          title: data.title,
-          body: data.body,
-          picture: req.files.image.name.length > 0 ? dateHash + '_' + req.files.image.name : '',
-        });
-
-        article.save();
-        res.redirect('/articles');
+        var picture = dateHash + '_' + req.files.image.name;
+        savePost(data, picture, res);
       }
     });
+  } else {
+    savePost(data, '', res);
   }
-
-
 });
 
 module.exports = router;

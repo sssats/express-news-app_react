@@ -38,7 +38,7 @@ class articlesView {
 let createArticleBtn = document.querySelector('.article button[name=create]');
 if (createArticleBtn) {
   createArticleBtn.addEventListener('click', function() {
-    createArticleController.saveArticle();
+    createArticleController.saveArticle(createArticleController.getFormData());
   });
 }
 

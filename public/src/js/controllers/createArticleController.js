@@ -22,8 +22,8 @@ class createArticleController {
     return formData;
   }
 
-  static saveArticle() {
-    requestProviderController.post(config.url.api + config.url.createArticle, this.getFormData())
+  static saveArticle(data) {
+    requestProviderController.post(config.url.api + config.url.createArticle, data)
       .then(function(json) {
         console.log(json);
       });
