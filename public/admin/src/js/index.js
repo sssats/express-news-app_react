@@ -14,5 +14,7 @@ app.config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode({enabled: true, requireBase: false});
 });
 
+require('./articles/articles.factory.js');
 require('./articles/articles.component.js');
+require('./articles/articles.controller.js');
 require('./articles/create-article.directive.js');
