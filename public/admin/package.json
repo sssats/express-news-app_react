@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-resource": "^1.6.2",
     "angular-route": "^1.6.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "whatwg-fetch": "^2.0.1"

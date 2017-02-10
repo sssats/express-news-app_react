@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-angular.module('admin').factory('articlesFactory', function($resource) {
+angular.module('admin').factory('articlesFactory',['$resource', function($resource) {
 
   function getArticles() {
     var Articles = $resource('http://localhost:3000/articles')
@@ -10,4 +10,4 @@ angular.module('admin').factory('articlesFactory', function($resource) {
   }
 
   return {getArticles: getArticles}
-});
+}]);
