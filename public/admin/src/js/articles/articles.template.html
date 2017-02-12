@@ -1,6 +1,6 @@
 <div>
   <h3>You have {{$ctrl.articles.length}} articles</h3>
   <ul>
-    <li ng-repeat="article in $ctrl.articles">{{article.title}}</li>
+    <article-item ng-repeat="article in $ctrl.articles" article="article"></article-item>
   </ul>
-</div>
+</div>  

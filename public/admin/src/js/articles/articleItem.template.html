@@ -1,0 +1,6 @@
+<li>
+  <p ng-click="$ctrl.editArticle()">
+    {{$ctrl.article.title}}({{$ctrl.article._id}})
+  </p>
+  <create-article article="$ctrl.article" ng-show="$ctrl.showEditForm"></create-article>
+</li>

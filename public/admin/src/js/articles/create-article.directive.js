@@ -7,13 +7,25 @@ angular.module('admin').directive('createArticle', function() {
     template: require('./create-article.template.html'),
     bindToController: true,
     controllerAs: '$ctrl',
-    controller: function($scope) {
+    scope: {
+      article: '=?'
+    },
+    controller: function($scope, $routeParams, articlesFactory) {
       var vm = this;
 
+      if ($routeParams.articleId) {
+        articlesFactory.getArticle($routeParams.articleId).$promise.then(json => {
+          vm.article = json.articles
+        })
+      }
+
       vm.create = function(form) {
+        var id = vm.article._id ? '/' + vm.article._id : '';
         if (form.$valid) {
-          requestProviderController.post(config.url.api + config.url.createArticle, JSON.stringify({'title': vm.title, 'body': vm.body})).then(function(json) {
-            console.log(json);
+          requestProviderController.post(config.url.api + config.url.createArticle + id,
+            JSON.stringify({'title': vm.article.title, 'body': vm.article.body})
+          ).then(function(json) {
+            $scope.$emit('articleSaved', json)
           });
         }
       }

@@ -9,12 +9,16 @@ app.config(function($routeProvider, $locationProvider) {
   .when('/articles', {
     templateUrl: 'articles.html'
   })
-  .when('/create-article', {
+  .when('/article/add', {
+    templateUrl: 'create-article.html'
+  })
+  .when('/article/:articleId/edit', {
     templateUrl: 'create-article.html'
   });
   $locationProvider.html5Mode({enabled: true, requireBase: false});
 });
 
+require('./articles/articleItem.component.js');
 require('./articles/articles.factory.js');
 require('./articles/articles.component.js');
 require('./articles/articles.controller.js');
